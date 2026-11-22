@@ -1,0 +1,93 @@
+TEXTS = {
+    "uz": {
+        "choose_lang": "Tilni tanlang / Выберите язык / Choose language:",
+        "menu": "Asosiy menyu. Kerakli bo'limni tanlang:",
+        "btn_hw": "📚 Uy ishi / Sinf ishi",
+        "btn_exam": "📝 Haftalik / Oylik imtihon",
+        "btn_timetable": "⏰ Jadval va Eslatmalar",
+        "btn_progress": "📊 Mening natijalarim",
+        "btn_lang": "🌐 Tilni o'zgartirish",
+        "choose_cat": "Yo'nalishni tanlang:",
+        "cat_science": "🔬 Science (Aniq va tabiiy fanlar)",
+        "cat_economy": "💼 Economy (Iqtisodiyot va huquq)",
+        "choose_subj": "Fanni tanlang:",
+        "hw_prompt": "Uy ishi yoki sinf ishi matnini yuboring (yoki masalaning rasmini yuklang). Men uni tushuntiraman, tekshiraman va javobini ko'rsataman:",
+        "thinking": "⏳ Gemini tahlil qilmoqda...",
+        "exam_type": "Imtihon turini tanlang:",
+        "weekly": "📅 Haftalik imtihon (5 ta savol)",
+        "monthly": "🗓 Oylik imtihon (10 ta savol)",
+        "exam_q": "Savol {curr}/{total}:\n\n{q}",
+        "exam_done": "✅ Imtihon tugadi! Natija: {score}/{total}\n\n{feedback}",
+        "tt_info": "⏰ Hozirgi eslatma vaqti: {time}\nYangi vaqt o'rnatish uchun HH:MM formatida yozing (masalan: 18:30) yoki o'chirish uchun 'off' deb yozing:",
+        "tt_saved": "✅ Eslatma har kuni soat {time} ga o'rnatildi!",
+        "tt_off": "🔕 Eslatmalar o'chirildi.",
+        "notif_msg": "🔔 Dars vaqti bo'ldi! Bugungi uy ishlarini tekshirish yoki haftalik imtihon topshirishni unutmang.",
+        "progress_msg": "📊 **Sizning statistikangiz:**\n\n✅ Tekshirilgan vazifalar: {hw}\n📝 Topshirilgan imtihonlar: {exams}\n⭐ O'rtacha ball: {avg}%",
+        "back": "🔙 Orqaga"
+    },
+    "ru": {
+        "choose_lang": "Tilni tanlang / Выберите язык / Choose language:",
+        "menu": "Главное меню. Выберите нужный раздел:",
+        "btn_hw": "📚 Домашка / Классная работа",
+        "btn_exam": "📝 Недельный / Месячный экзамен",
+        "btn_timetable": "⏰ Расписание и Уведомления",
+        "btn_progress": "📊 Мой прогресс",
+        "btn_lang": "🌐 Сменить язык",
+        "choose_cat": "Выберите категорию:",
+        "cat_science": "🔬 Science (Наука и IT)",
+        "cat_economy": "💼 Economy (Экономика и Право)",
+        "choose_subj": "Выберите предмет:",
+        "hw_prompt": "Отправьте текст задания или фото тетради/учебника. Я объясню решение, проверю твой вариант и покажу правильный ответ:",
+        "thinking": "⏳ Gemini проверяет и готовит разбор...",
+        "exam_type": "Выберите формат экзамена:",
+        "weekly": "📅 Недельный экзамен (5 вопросов)",
+        "monthly": "🗓 Месячный экзамен (10 вопросов)",
+        "exam_q": "Вопрос {curr}/{total}:\n\n{q}",
+        "exam_done": "✅ Экзамен завершён! Результат: {score}/{total}\n\n{feedback}",
+        "tt_info": "⏰ Текущее время уведомлений: {time}\nЧтобы задать новое время, напишите его в формате ЧЧ:ММ (например: 18:30) или напишите 'off' для отключения:",
+        "tt_saved": "✅ Уведомление установлено каждый день на {time}!",
+        "tt_off": "🔕 Уведомления отключены.",
+        "notif_msg": "🔔 Время учёбы! Самое время разобрать домашку или сдать недельный тест.",
+        "progress_msg": "📊 **Твой прогресс:**\n\n✅ Разобрано заданий: {hw}\n📝 Сдано экзаменов: {exams}\n⭐ Средний балл: {avg}%",
+        "back": "🔙 Назад"
+    },
+    "en": {
+        "choose_lang": "Tilni tanlang / Выберите язык / Choose language:",
+        "menu": "Main Menu. Choose an option:",
+        "btn_hw": "📚 Homework / Classwork",
+        "btn_exam": "📝 Weekly / Monthly Exam",
+        "btn_timetable": "⏰ Timetable & Notifications",
+        "btn_progress": "📊 My Progress",
+        "btn_lang": "🌐 Change Language",
+        "choose_cat": "Choose a category:",
+        "cat_science": "🔬 Science",
+        "cat_economy": "💼 Economy",
+        "choose_subj": "Choose a subject:",
+        "hw_prompt": "Send your homework/classwork text (or upload a photo). I will explain it, check your work, and show the answer:",
+        "thinking": "⏳ Gemini is analyzing...",
+        "exam_type": "Choose exam type:",
+        "weekly": "📅 Weekly Exam (5 questions)",
+        "monthly": "🗓 Monthly Exam (10 questions)",
+        "exam_q": "Question {curr}/{total}:\n\n{q}",
+        "exam_done": "✅ Exam completed! Score: {score}/{total}\n\n{feedback}",
+        "tt_info": "⏰ Current reminder time: {time}\nSend a new time in HH:MM format (e.g. 18:30) or type 'off' to disable:",
+        "tt_saved": "✅ Daily reminder set for {time}!",
+        "tt_off": "🔕 Notifications disabled.",
+        "notif_msg": "🔔 Study time! Don't forget to review your classwork or take your weekly exam.",
+        "progress_msg": "📊 **Your Progress:**\n\n✅ Homeworks checked: {hw}\n📝 Exams taken: {exams}\n⭐ Average score: {avg}%",
+        "back": "🔙 Back"
+    }
+}
+
+SUBJECTS = {
+    "science": {
+        "uz": ["Kimyo", "Biologiya", "Matematika", "IT", "Fizika", "Robototexnika"],
+        "ru": ["Химия", "Биология", "Математика", "IT", "Физика", "Робототехника"],
+        "en": ["Chemistry", "Biology", "Math", "IT", "Physics", "Robotics"]
+    },
+    "economy": {
+        "uz": ["Tarix", "Iqtisodiyot", "Huquq", "Moliya", "Biznes", "Davlat huquqi va Konstitutsiya"],
+        "ru": ["История", "Экономика", "Право", "Финансы", "Бизнес", "Гос. право и Конституция"],
+        "en": ["History", "Economy", "Law", "Finance", "Business", "Gov Law & Constitution"]
+    }
+}

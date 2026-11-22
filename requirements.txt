@@ -1,0 +1,6 @@
+aiogram
+google-genai
+aiosqlite
+apscheduler
+python-dotenv
+pillow
