@@ -8,13 +8,18 @@ from aiogram.types import Message, CallbackQuery, InlineKeyboardMarkup, InlineKe
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import State, StatesGroup
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
+from aiogram.client.default import DefaultBotProperties
+from aiogram.enums import ParseMode
 
 import database as db
 from locales import TEXTS, SUBJECTS
 import gemini_service as ai
 
 load_dotenv()
-bot = Bot(token=os.getenv("BOT_TOKEN"))
+bot = Bot(
+    token=os.getenv("BOT_TOKEN"),
+    default=DefaultBotProperties(parse_mode=ParseMode.HTML),
+)
 dp = Dispatcher()
 
 class StudyState(StatesGroup):

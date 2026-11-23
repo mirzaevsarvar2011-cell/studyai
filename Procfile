@@ -1,1 +1,1 @@
-Procfile worker: python bot.py
+study_ai_bot/README.md
