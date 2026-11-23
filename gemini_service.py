@@ -14,14 +14,15 @@ load_dotenv()
 gemini_client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
 
 # Клиент DeepSeek (использует стандартный формат OpenAI)
+deepseek_key = os.getenv("DEEPSEEK_API_KEY") or "missing_key"
 deepseek_client = AsyncOpenAI(
-    api_key=os.getenv("DEEPSEEK_API_KEY"),
+    api_key=deepseek_key,
     base_url="https://api.deepseek.com",
 )
 
 GEMINI_MODELS = [
-    "gemini-2.5-flash",
-    "gemini-2.5-flash-lite",
+    "gemini-3.5-flash-lite",
+    "gemini-3-flash",
 ]
 
 LANG_MAP = {"uz": "Uzbek", "ru": "Russian", "en": "English"}
@@ -101,7 +102,6 @@ async def check_homework(subject: str, lang: str, text: str = None, image_bytes:
         f"Student task: {text or 'See attached image.'}"
     )
 
-    # Если прикрепили фото — идем в Gemini (DeepSeek не читает картинки)
     if image_bytes:
         contents = [
             prompt,
@@ -110,16 +110,21 @@ async def check_homework(subject: str, lang: str, text: str = None, image_bytes:
         try:
             return await _ask_gemini(contents, use_telegram_format=True)
         except Exception as e:
-            return f"⚠️ Ошибка при обработке фото в Gemini. Попробуйте отправить задание текстом.\n<code>{html.escape(str(e))}</code>"
+            return f"⚠️ Ошибка при обработке фото в Gemini.\n<code>{html.escape(str(e))}</code>"
 
-    # Если только текст — сначала пробуем стабильный DeepSeek, при сбое переключаемся на Gemini
     try:
         return await _ask_deepseek(prompt, use_telegram_format=True)
-    except Exception:
+    except Exception as ds_err:
+        print(f"[DeepSeek Error]: {ds_err}")
         try:
             return await _ask_gemini([prompt], use_telegram_format=True)
-        except Exception as e:
-            return f"⚠️ Серверы ИИ временно недоступны, попробуйте позже.\n<code>{html.escape(str(e))}</code>"
+        except Exception as gm_err:
+            print(f"[Gemini Error]: {gm_err}")
+            return (
+                "⚠️ Серверы ИИ временно недоступны, попробуйте позже.\n"
+                f"<code>DeepSeek: {html.escape(str(ds_err))}</code>\n"
+                f"<code>{html.escape(str(gm_err))}</code>"
+            )
 
 
 async def generate_exam(subject: str, lang: str, count: int = 5) -> list[dict]:
@@ -131,14 +136,17 @@ async def generate_exam(subject: str, lang: str, count: int = 5) -> list[dict]:
     )
     try:
         raw = await _ask_deepseek(prompt, use_telegram_format=False)
-    except Exception:
+    except Exception as ds_err:
+        print(f"[DeepSeek Exam Error]: {ds_err}")
         try:
             raw = await _ask_gemini([prompt], use_telegram_format=False)
-        except Exception:
+        except Exception as gm_err:
+            print(f"[Gemini Exam Error]: {gm_err}")
             return []
 
     cleaned = raw.strip().removeprefix("```json").removeprefix("```").removesuffix("```").strip()
     try:
         return json.loads(cleaned)
-    except Exception:
+    except Exception as parse_err:
+        print(f"[JSON Parse Error]: {parse_err} | Raw: {raw}")
         return []
